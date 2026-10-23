@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- =========================
+         BASIC META
+    ========================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Free AI background remover tool by ImageToolsHub. Automatically remove image background in your browser instantly."
+    />
+    <meta
+      name="keywords"
+      content="remove background, bg remover, transparent background, ai background remover, image tool"
+    />
+    <meta name="author" content="ImageToolsHub" />
+
+    <!-- =========================
+         PAGE TITLE
+    ========================== -->
+    <title>Remove Background AI - ImageToolsHub</title>
+
+    <!-- =========================
+         BOXICONS
+    ========================== -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- =========================
+         GLOBAL CSS
+    ========================== -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <!-- =========================
+         TOOL CSS
+    ========================== -->
+    <link rel="stylesheet" href="assets/css/removebg.css" />
+
+    <!-- Masukkan script UMD ini di dalam <head> -->
+    <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.5/dist/umd/index.js"></script>
+
+    <!-- =========================
+         MONETAG POPUNDER AD SCRIPT
+    
+    <script>
+      (function (s) {
+        ((s.dataset.zone = "12061023"),
+          (s.src = "https://al5sm.com/tag.min.js"));
+      })(
+        [document.documentElement, document.body]
+          .filter(Boolean)
+          .pop()
+          .appendChild(document.createElement("script")),
+      );
+    </script>
+    ========================== -->
+  </head>
+
+  <body>
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+    <header class="navbar">
+      <div class="container nav-container">
+        <!-- LOGO -->
+        <a href="../../index.html" class="logo"> Image<span>Tools</span>Hub </a>
+
+        <!-- DESKTOP NAVIGATION -->
+        <nav class="nav-menu" id="navMenu">
+          <a href="../../index.html#home" class="nav-link"> Home </a>
+          <a href="../../index.html#tools" class="nav-link active"> Tools </a>
+          <a href="../../index.html#about" class="nav-link"> About </a>
+        </nav>
+
+        <!-- NAVBAR ACTION -->
+        <div class="nav-actions">
+          <!-- THEME TOGGLE -->
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+          >
+            <i class="bx bx-moon"></i>
+          </button>
+
+          <!-- MOBILE MENU -->
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation menu"
+          >
+            <i class="bx bx-menu"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- =========================
+         TOOL MAIN SECTION
+    ========================== -->
+    <main class="tool-main-section">
+      <div class="container">
+        <div class="tool-header">
+          <a href="../../index.html#tools" class="back-link">
+            <i class="bx bx-left-arrow-alt"></i> Back to Tools
+          </a>
+          <h1>Remove Background (AI)</h1>
+          <p>
+            Remove image background automatically in seconds directly on your
+            device.
+          </p>
+        </div>
+
+        <div class="tool-card-box">
+          <!-- Area Upload Gambar -->
+          <div
+            class="upload-area"
+            id="uploadArea"
+            onclick="document.getElementById('fileInput').click()"
+          >
+            <div class="upload-icon">
+              <i class="bx bx-cloud-upload"></i>
+            </div>
+            <h3>Click or Drag & Drop Image Here</h3>
+            <p>Supports JPG, PNG, WEBP</p>
+            <input
+              type="file"
+              id="fileInput"
+              accept="image/*"
+              style="display: none"
+              onchange="processImage(event)"
+            />
+          </div>
+
+          <!-- Animasi Loading Spinner (Buffering) -->
+          <div
+            id="loadingSpinner"
+            class="loading-spinner"
+            style="display: none"
+          >
+            <div class="spinner"></div>
+            <p id="statusText">Memproses AI... Mohon tunggu sebentar.</p>
+          </div>
+
+          <!-- Kotak Hasil & Tombol Download Multi-Format -->
+          <div class="result-box" id="resultBox">
+            <h3>Result:</h3>
+            <div class="image-preview">
+              <img id="outputImg" alt="Result No BG" />
+            </div>
+
+            <div class="download-actions">
+              <button class="btn btn-primary" onclick="downloadImage('png')">
+                <i class="bx bx-download"></i> Download PNG
+              </button>
+              <button class="btn btn-secondary" onclick="downloadImage('jpg')">
+                <i class="bx bx-download"></i> Download JPG
+              </button>
+              <button class="btn btn-secondary" onclick="downloadImage('webp')">
+                <i class="bx bx-download"></i> Download WebP
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <!-- FOOTER BRAND -->
+        <div class="footer-brand">
+          <a href="../../index.html" class="logo">
+            Image<span>Tools</span>Hub
+          </a>
+          <p>Simple image tools for everyone.</p>
+        </div>
+
+        <!-- FOOTER LINKS -->
+        <div class="footer-links">
+          <a href="../../index.html#home"> Home </a>
+          <a href="../../index.html#tools"> Tools </a>
+          <a href="../../index.html#about"> About </a>
+          <a href="../Privacy-Policy/index.html#Privacy-Policy">
+            Privacy Policy
+          </a>
+          <a href="#"> Terms </a>
+        </div>
+      </div>
+
+      <!-- FOOTER BOTTOM -->
+      <div class="footer-bottom">
+        <div class="container">
+          <p>© 2026 ImageToolsHub. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================
+         GLOBAL JAVASCRIPT
+    ========================== -->
+    <script src="../../assets/js/script.js"></script>
+
+    <!-- =========================
+         TOOL JAVASCRIPT
+    ========================== -->
+    <script type="module" src="assets/js/removebg.js"></script>
+  </body>
+</html>
