@@ -156,3 +156,68 @@
   color: #475569;
   font-size: 0.95rem;
 }
+/* Editor & Canvas Manual Styling */
+.editor-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  background: #f8fafc;
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #e2e8f0;
+}
+
+.tool-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.btn-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-tool.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.btn-tool:hover:not(.active) {
+  background: #f1f5f9;
+}
+
+.canvas-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+  overflow: auto;
+  background-image: repeating-conic-gradient(#f1f5f9 0% 25%, #ffffff 0% 50%);
+  background-size: 20px 20px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  padding: 10px;
+}
+
+#editorCanvas {
+  max-width: 100%;
+  height: auto;
+  cursor: crosshair;
+}

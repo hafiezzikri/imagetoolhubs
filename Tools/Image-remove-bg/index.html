@@ -145,13 +145,55 @@
             <p id="statusText">Memproses AI... Mohon tunggu sebentar.</p>
           </div>
 
-          <!-- Kotak Hasil & Tombol Download Multi-Format -->
-          <div class="result-box" id="resultBox">
-            <h3>Result:</h3>
-            <div class="image-preview">
-              <img id="outputImg" alt="Result No BG" />
+          <!-- Kotak Hasil & Editor Manual (Eraser / Restore) -->
+          <div class="result-box" id="resultBox" style="display: none">
+            <h3>Result & Fine-Tune Editor:</h3>
+
+            <!-- Toolbar Pengeditan Manual -->
+            <div class="editor-toolbar">
+              <div class="tool-group">
+                <button
+                  id="btnErase"
+                  class="btn-tool active"
+                  onclick="setMode('erase')"
+                >
+                  <i class="bx bx-eraser"></i> Erase (Hapus)
+                </button>
+                <button
+                  id="btnRestore"
+                  class="btn-tool"
+                  onclick="setMode('restore')"
+                >
+                  <i class="bx bx-brush"></i> Restore (Kembalikan)
+                </button>
+              </div>
+
+              <div class="tool-group">
+                <label for="brushSize">Brush Size:</label>
+                <input
+                  type="range"
+                  id="brushSize"
+                  min="5"
+                  max="100"
+                  value="20"
+                  oninput="updateBrushSize(this.value)"
+                />
+                <span id="brushSizeVal">20px</span>
+              </div>
+
+              <div class="tool-group">
+                <button class="btn-tool" onclick="undoCanvas()">
+                  <i class="bx bx-undo"></i> Undo
+                </button>
+              </div>
             </div>
 
+            <!-- Canvas Tempat Mengedit -->
+            <div class="canvas-wrapper">
+              <canvas id="editorCanvas"></canvas>
+            </div>
+
+            <!-- Tombol Download -->
             <div class="download-actions">
               <button class="btn btn-primary" onclick="downloadImage('png')">
                 <i class="bx bx-download"></i> Download PNG
