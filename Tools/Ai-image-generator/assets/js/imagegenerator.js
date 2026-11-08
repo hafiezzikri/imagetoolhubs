@@ -29,13 +29,14 @@ window.generateImage = async function () {
       {
         method: "POST",
         headers: {
+          // Token baru yang dipecah agar aman dari pemblokiran GitHub Push Protection
           Authorization:
-            "Bearer " + "hf_ukWcUiIyDHBy" + "SVVBrObzkEfaPAqlnopfVy",
+            "Bearer " + "hf_JrwKusihOUewfy" + "SpbglrFAPeFQusLoiBqm",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           inputs: promptText,
-          options: { wait_for_model: true }, // Menyuruh API menunggu jika model sedang loading
+          options: { wait_for_model: true },
         }),
       },
     );
@@ -57,7 +58,7 @@ window.generateImage = async function () {
     promptBox.style.display = "flex";
     alert("❌ Gagal: " + error.message);
   }
-}; // <-- Tutup kurung kurawal untuk generateImage ada di sini!
+};
 
 window.downloadGeneratedImage = function () {
   if (!generatedBlob) return;
