@@ -1,3 +1,7 @@
+/* ========================================
+   AI IMAGE GENERATOR STYLES
+======================================== */
+
 .prompt-box {
   display: flex;
   flex-direction: column;
@@ -86,4 +90,15 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* ========================================
+   TAMBAHAN JARAK SPASI UTAMA (AGAR TIDAK RAPAT KE FOOTER)
+======================================== */
+.main-content {
+  padding-bottom: 60px; /* Memberikan jarak napas antara card bawah dengan footer */
+}
+
+.how-to-section {
+  margin-bottom: 40px;
 }
