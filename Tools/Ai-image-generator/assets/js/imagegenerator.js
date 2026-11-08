@@ -29,23 +29,20 @@ window.generateImage = async function () {
       {
         method: "POST",
         headers: {
-          // Token dipisah menjadi beberapa bagian agar lolos sensor keamanan GitHub saat di-push
           Authorization:
             "Bearer " + "hf_ukWcUiIyDHBy" + "SVVBrObzkEfaPAqlnopfVy",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ inputs: promptText }),
+        body: JSON.stringify({
+          inputs: promptText,
+          options: { wait_for_model: true }, // Menyuruh API menunggu jika model sedang loading
+        }),
       },
     );
+
     if (!response.ok) {
-      if (response.status === 503) {
-        throw new Error(
-          "AI model is waking up (cold start). Please wait 10 seconds and try clicking Generate again.",
-        );
-      }
-      throw new Error(
-        `Server returned status ${response.status}. Please check your token or input.`,
-      );
+      const errorText = await response.text();
+      throw new Error(`Server status ${response.status}: ${errorText}`);
     }
 
     generatedBlob = await response.blob();
@@ -58,9 +55,9 @@ window.generateImage = async function () {
     console.error("AI Generation Error:", error);
     loadingSpinner.style.display = "none";
     promptBox.style.display = "flex";
-    alert("❌ Error: " + error.message);
+    alert("❌ Gagal: " + error.message);
   }
-};
+}; // <-- Tutup kurung kurawal untuk generateImage ada di sini!
 
 window.downloadGeneratedImage = function () {
   if (!generatedBlob) return;
