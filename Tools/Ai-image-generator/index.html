@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Image Generator - ImageToolsHub</title>
+
+    <!-- Boxicons -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Global & Lokal -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/imagegenerator.css" />
+  </head>
+  <body>
+    <!-- =========================
+       NAVBAR
+  ========================== -->
+    <header class="navbar">
+      <div class="container nav-container">
+        <a href="../../index.html" class="logo"> Image<span>Tools</span>Hub </a>
+
+        <nav class="nav-menu" id="navMenu">
+          <a href="../../index.html#home" class="nav-link"> Home </a>
+          <a href="../../index.html#tools" class="nav-link active"> Tools </a>
+          <a href="../../index.html#about" class="nav-link"> About </a>
+          <a href="../../index.html#faq" class="nav-link"> FAQ </a>
+        </nav>
+
+        <div class="nav-actions">
+          <!-- Theme Toggle (Akan otomatis diatur oleh JS Global) -->
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+          >
+            <i class="bx bx-moon"></i>
+          </button>
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation menu"
+          >
+            <i class="bx bx-menu"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- =========================
+       MAIN CONTENT
+  ========================== -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+          <a href="../../index.html">Home</a>
+          <i class="bx bx-chevron-right"></i>
+          <span>AI Image Generator</span>
+        </div>
+
+        <!-- Tool Header Section -->
+        <div class="tool-header-section">
+          <div class="tool-main-icon">
+            <i class="bx bx-sparkles"></i>
+          </div>
+          <h1>AI Image Generator</h1>
+          <p>
+            Transform your text prompts into stunning AI-generated images online
+            for free.
+          </p>
+        </div>
+
+        <!-- Tool Card Box (Kotak Utama) -->
+        <div class="tool-card-box">
+          <!-- Prompt Input Form -->
+          <div class="prompt-box" id="promptBox">
+            <div class="upload-icon-container">
+              <i class="bx bx-edit-alt"></i>
+            </div>
+            <h3>Enter Your Prompt</h3>
+            <p>
+              Describe the image you want to create (English is recommended for
+              best results).
+            </p>
+
+            <textarea
+              id="promptInput"
+              rows="4"
+              placeholder="e.g., A futuristic cyberpunk city at night with neon lights, highly detailed, 4k..."
+            ></textarea>
+
+            <button
+              class="btn btn-primary"
+              id="generateButton"
+              onclick="generateImage()"
+            >
+              <i class="bx bx-sparkles"></i> Generate Image
+            </button>
+          </div>
+
+          <!-- Loading Spinner -->
+          <div
+            id="loadingSpinner"
+            class="loading-spinner"
+            style="display: none"
+          >
+            <div class="spinner"></div>
+            <p id="statusText">
+              AI is painting your image... Please wait a moment.
+            </p>
+          </div>
+
+          <!-- Result Box -->
+          <div class="result-box" id="resultBox" style="display: none">
+            <h3>Generated Result:</h3>
+            <div class="image-preview">
+              <img id="outputImg" alt="Generated AI Art" />
+            </div>
+
+            <div
+              class="download-actions"
+              style="
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+                margin-top: 15px;
+              "
+            >
+              <button
+                class="btn btn-primary"
+                id="downloadButton"
+                onclick="downloadGeneratedImage()"
+              >
+                <i class="bx bx-download"></i> Download Image
+              </button>
+              <button class="btn btn-secondary" onclick="resetGenerator()">
+                <i class="bx bx-refresh"></i> Generate Another
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========================
+           HOW TO SECTION
+      ========================== -->
+        <section
+          class="how-to-section"
+          style="margin-top: 60px; text-align: center"
+        >
+          <h2>How to Generate an Image with AI?</h2>
+          <p style="color: #64748b; margin-top: 8px; margin-bottom: 30px">
+            Creating stunning artwork takes just a few simple steps.
+          </p>
+
+          <div
+            class="tools-grid"
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+              gap: 20px;
+              text-align: left;
+            "
+          >
+            <div class="tool-card" style="cursor: default">
+              <div class="tool-content">
+                <span
+                  style="color: #2563eb; font-weight: bold; font-size: 1.1rem"
+                  >01</span
+                >
+                <h3 style="margin-top: 10px">Enter Prompt</h3>
+                <p style="font-size: 0.9rem; color: #64748b">
+                  Type a descriptive prompt of what you want to visualize.
+                </p>
+              </div>
+            </div>
+
+            <div class="tool-card" style="cursor: default">
+              <div class="tool-content">
+                <span
+                  style="color: #2563eb; font-weight: bold; font-size: 1.1rem"
+                  >02</span
+                >
+                <h3 style="margin-top: 10px">AI Processing</h3>
+                <p style="font-size: 0.9rem; color: #64748b">
+                  Our AI model transforms your text into a unique image.
+                </p>
+              </div>
+            </div>
+
+            <div class="tool-card" style="cursor: default">
+              <div class="tool-content">
+                <span
+                  style="color: #2563eb; font-weight: bold; font-size: 1.1rem"
+                  >03</span
+                >
+                <h3 style="margin-top: 10px">Download</h3>
+                <p style="font-size: 0.9rem; color: #64748b">
+                  Save your generated masterpiece and share it anywhere.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- =========================
+       FOOTER
+  ========================== -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-brand">
+          <a href="../../index.html" class="logo">
+            Image<span>Tools</span>Hub
+          </a>
+          <p>Simple image tools for everyone.</p>
+        </div>
+        <div class="footer-links">
+          <a href="../../index.html#home"> Home </a>
+          <a href="../../index.html#tools"> Tools </a>
+          <a href="../../index.html#about"> About </a>
+          <a href="#"> Privacy Policy </a>
+          <a href="#"> Terms </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <p>© 2026 ImageToolsHub. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================
+       JAVASCRIPT SCRIPTS
+  ========================== -->
+    <!-- 1. Skrip Global (Navbar & Dark Mode) -->
+    <script src="../../assets/js/script.js"></script>
+    <!-- 2. Skrip Khusus AI Image Generator -->
+    <script src="assets/js/imagegenerator.js"></script>
+  </body>
+</html>
