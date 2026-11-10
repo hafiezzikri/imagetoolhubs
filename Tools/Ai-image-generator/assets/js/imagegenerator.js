@@ -1,9 +1,3 @@
-/* ========================================
-   AI IMAGE GENERATOR SCRIPT
-======================================== */
-
-let generatedBlob = null;
-
 window.generateImage = async function () {
   const promptText = document.getElementById("promptInput").value.trim();
   if (!promptText) {
@@ -17,63 +11,37 @@ window.generateImage = async function () {
   const outputImg = document.getElementById("outputImg");
   const statusText = document.getElementById("statusText");
 
-  // Sembunyikan form & tampilkan spinner loading
   promptBox.style.display = "none";
   resultBox.style.display = "none";
   loadingSpinner.style.display = "block";
   statusText.textContent = "AI is painting your image... Please wait a moment.";
 
   try {
-    const response = await fetch(
-      "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0",
-      {
-        method: "POST",
-        headers: {
-          Authorization:
-            "Bearer " + "hf_JrwKusihOUewfy" + "SpbglrFAPeFQusLoiBqm",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          inputs: promptText,
-          options: { wait_for_model: true },
-        }),
-      },
-    );
+    // Menggunakan Pollinations AI (Tanpa API Key, langsung jadi URL gambar)
+    const encodedPrompt = encodeURIComponent(promptText);
+    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&nologo=true`;
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Server status ${response.status}: ${errorText}`);
-    }
+    // Validasi apakah gambar berhasil dimuat
+    const img = new Image();
+    img.src = imageUrl;
 
-    generatedBlob = await response.blob();
-    const imageUrl = URL.createObjectURL(generatedBlob);
+    img.onload = async function () {
+      // Ambil sebagai blob agar fungsi download tetap berfungsi normal
+      const response = await fetch(imageUrl);
+      generatedBlob = await response.blob();
 
-    outputImg.src = imageUrl;
-    loadingSpinner.style.display = "none";
-    resultBox.style.display = "block";
+      outputImg.src = imageUrl;
+      loadingSpinner.style.display = "none";
+      resultBox.style.display = "block";
+    };
+
+    img.onerror = function () {
+      throw new Error("Gagal memuat gambar dari server AI.");
+    };
   } catch (error) {
     console.error("AI Generation Error:", error);
     loadingSpinner.style.display = "none";
     promptBox.style.display = "flex";
     alert("❌ Gagal: " + error.message);
   }
-};
-
-window.downloadGeneratedImage = function () {
-  if (!generatedBlob) return;
-  const downloadURL = URL.createObjectURL(generatedBlob);
-  const link = document.createElement("a");
-  link.href = downloadURL;
-  link.download = "ai-generated-art.png";
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(downloadURL);
-};
-
-window.resetGenerator = function () {
-  document.getElementById("resultBox").style.display = "none";
-  document.getElementById("promptBox").style.display = "flex";
-  document.getElementById("promptInput").value = "";
-  generatedBlob = null;
 };
