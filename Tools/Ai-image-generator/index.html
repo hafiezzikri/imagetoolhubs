@@ -92,6 +92,42 @@
               rows="4"
               placeholder="e.g., A futuristic cyberpunk city at night with neon lights, highly detailed, 4k..."
             ></textarea>
+            <div style="margin-bottom: 15px; text-align: left">
+              <label
+                for="aspectRatio"
+                style="
+                  display: block;
+                  margin-bottom: 5px;
+                  font-weight: 500;
+                  font-size: 0.9rem;
+                "
+              >
+                Select Image Ratio / Size:
+              </label>
+              <select
+                id="aspectRatio"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  border-radius: 8px;
+                  border: 1px solid var(--border-color, #cbd5e1);
+                  background: var(--background-color, #fff);
+                  color: inherit;
+                  font-size: 0.95rem;
+                "
+              >
+                <option value="1024x1024">Square (1:1 - 1024 x 1024)</option>
+                <option value="1280x720">
+                  Landscape / YouTube (16:9 - 1280 x 720)
+                </option>
+                <option value="720x1280">
+                  Portrait / TikTok / Story (9:16 - 720 x 1280)
+                </option>
+                <option value="800x1200">
+                  Standard Portrait (2:3 - 800 x 1200)
+                </option>
+              </select>
+            </div>
 
             <button
               class="btn btn-primary"
