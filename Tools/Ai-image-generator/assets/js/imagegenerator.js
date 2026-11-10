@@ -29,7 +29,6 @@ window.generateImage = async function () {
       {
         method: "POST",
         headers: {
-          // Token baru yang dipecah agar aman dari pemblokiran GitHub Push Protection
           Authorization:
             "Bearer " + "hf_JrwKusihOUewfy" + "SpbglrFAPeFQusLoiBqm",
           "Content-Type": "application/json",
