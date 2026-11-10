@@ -19,6 +19,7 @@ window.generateImage = async function () {
   try {
     // Menggunakan Pollinations AI (Tanpa API Key, langsung jadi URL gambar)
     const encodedPrompt = encodeURIComponent(promptText);
+    // Tambahkan &nologo=true di ujung URL untuk menghilangkan watermark
     const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&nologo=true`;
 
     // Validasi apakah gambar berhasil dimuat
