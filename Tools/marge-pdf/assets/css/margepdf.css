@@ -1,0 +1,115 @@
+/* ========================================
+   CUSTOM STYLING HALAMAN MERGE PDF
+======================================== */
+
+.tool-page-container {
+  min-height: calc(100vh - 72px);
+  background: var(--background-secondary);
+  padding-bottom: 80px;
+}
+
+/* Mengatur area upload agar fokus di tengah dengan tombol besar */
+.rotator-section {
+  padding: 60px 0;
+}
+
+.upload-area {
+  background: var(--card-background);
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 60px 20px;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.upload-area:hover {
+  border-color: var(--primary-color);
+}
+
+/* Styling Tombol Utama ala iLovePDF */
+.upload-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 24px 0 16px;
+  flex-wrap: wrap;
+}
+
+.btn-large-merge {
+  background-color: #e5322d; /* Warna merah khas iLovePDF, atau pakai var(--primary-color) jika ingin tetap ungu */
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 18px 48px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+}
+
+.btn-large-merge:hover {
+  background-color: #c52824;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Tombol ikon kecil di samping (Google Drive / Dropbox style) */
+.btn-icon-small {
+  width: 48px;
+  height: 48px;
+  background-color: #e5322d;
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  border: none;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.btn-icon-small:hover {
+  background-color: #c52824;
+  transform: translateY(-2px);
+}
+
+/* Teks keterangan bawah tombol */
+.upload-drop-text {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* List file terpilih */
+#selected-files li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  padding: 14px 20px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+#selected-files li span {
+  color: var(--text-secondary);
+}
+
+#selected-files li button {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 20px;
+}

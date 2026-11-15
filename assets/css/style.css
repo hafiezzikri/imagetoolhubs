@@ -571,6 +571,11 @@ body.dark-mode .navbar {
   padding: 100px 0;
 }
 
+/* MERAPIKAN JARAK ANTAR SECTION TOOLS BERURUTAN */
+.tools-section + .tools-section {
+  padding-top: 0;
+}
+
 /* ========================================
    SECTION HEADER
 ======================================== */

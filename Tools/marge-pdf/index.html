@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Merge multiple PDF files into one online for free with ImageToolsHub."
+    />
+    <title>Gabungkan PDF - ImageToolsHub</title>
+
+    <!-- ========================================
+        BOXICONS
+    ========================================= -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- ========================================
+        GLOBAL CSS (Naik dua tingkat ke root, lalu ke assets)
+    ========================================= -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <!-- ========================================
+        TOOL CSS (Sesuai struktur folder lokal kamu)
+    ========================================= -->
+    <link rel="stylesheet" href="assets/css/margepdf.css" />
+  </head>
+
+  <body>
+    <!-- ========================================
+        HEADER
+    ========================================= -->
+    <header class="navbar">
+      <div class="container nav-container">
+        <!-- LOGO (Kembali ke index.html utama di root) -->
+        <a href="../index.html#home" class="logo">
+          Image<span>Tools</span>Hub
+        </a>
+
+        <!-- NAVIGATION -->
+        <nav class="nav-menu" id="navMenu">
+          <a href="../index.html" class="nav-link"> Home </a>
+          <a href="../index.html#tools" class="nav-link active"> Tools </a>
+          <a href="../index.html#about" class="nav-link"> About </a>
+        </nav>
+
+        <!-- NAV ACTIONS -->
+        <div class="nav-actions">
+          <!-- THEME BUTTON -->
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+          >
+            <i class="bx bx-moon"></i>
+          </button>
+
+          <!-- MOBILE MENU -->
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation menu"
+          >
+            <i class="bx bx-menu"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========================================
+        TOOL HERO
+    ========================================= -->
+    <section class="tool-hero">
+      <div class="container">
+        <!-- BREADCRUMB -->
+        <div class="breadcrumb">
+          <a href="../index.html"> Home </a>
+          <i class="bx bx-chevron-right"></i>
+          <span>Gabungkan PDF</span>
+        </div>
+
+        <!-- TOOL HEADER -->
+        <div class="tool-header">
+          <!-- TOOL ICON -->
+          <div class="tool-page-icon">
+            <i class="bx bx-file-blank"></i>
+          </div>
+
+          <h1>Gabungkan PDF Online</h1>
+
+          <p>
+            Gabungkan beberapa file PDF menjadi satu dokumen dengan mudah dan
+            cepat. Atur urutannya, pratinjau, dan unduh hasilnya secara gratis.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+        MERGE SECTION
+    ========================================= -->
+    <section class="rotator-section">
+      <div class="container">
+        <div class="rotator-wrapper">
+          <!-- UPLOAD AREA -->
+          <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">
+              <i class="bx bx-cloud-upload"></i>
+            </div>
+
+            <h2>Pilih File PDF</h2>
+
+            <p>
+              Seret dan letakkan file PDF Anda di sini atau pilih dari perangkat
+              Anda.
+            </p>
+
+            <!-- FILE INPUT -->
+            <input
+              type="file"
+              id="pdf-file-input"
+              accept="application/pdf"
+              multiple
+              hidden
+            />
+
+            <!-- UPLOAD BUTTON -->
+            <label for="pdf-file-input" class="upload-button">
+              <i class="bx bx-upload"></i>
+              Pilih PDF
+            </label>
+
+            <span class="upload-info">
+              Format PDF • Pilih lebih dari satu file
+            </span>
+          </div>
+
+          <!-- FILE LIST CONTAINER (TERSEMBUNYI SAAT AWAL) -->
+          <div
+            class="rotator-editor"
+            id="file-list-container"
+            style="display: none"
+          >
+            <div class="rotator-card">
+              <div class="rotator-card-header">
+                <div>
+                  <h3>File Terpilih</h3>
+                  <span id="file-count">0 file</span>
+                </div>
+              </div>
+
+              <!-- DAFTAR LIST FILE -->
+              <div style="padding: 20px">
+                <ul
+                  id="selected-files"
+                  style="list-style: none; padding: 0; margin: 0"
+                ></ul>
+              </div>
+
+              <!-- TOOL ACTIONS -->
+              <div class="tool-actions">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  id="clearButton"
+                >
+                  <i class="bx bx-reset"></i>
+                  Reset
+                </button>
+
+                <button type="button" class="btn btn-primary" id="merge-btn">
+                  <i class="bx bx-merge"></i>
+                  Gabungkan PDF Sekarang
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+        FOOTER
+    ========================================= -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-brand">
+          <a href="../index.html#home" class="logo">
+            <i class="bx bx-image"></i>
+            <span>ImageToolsHub</span>
+          </a>
+          <p>Simple online tools for everyone.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="../index.html#home"> Home </a>
+          <a href="../index.html#tools"> Tools </a>
+          <a href="../index.html#about"> About </a>
+          <a href="#"> Privacy Policy </a>
+          <a href="#"> Terms </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container">
+          <p>© 2026 ImageToolsHub. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ========================================
+        GLOBAL JAVASCRIPT
+    ========================================= -->
+    <script src="../../assets/js/script.js"></script>
+
+    <!-- ========================================
+        TOOL JAVASCRIPT (Sesuaikan jika file JS sudah dibuat di dalam folder js)
+    ========================================= -->
+    <script src="assets/js/margepdf.js"></script>
+  </body>
+</html>
