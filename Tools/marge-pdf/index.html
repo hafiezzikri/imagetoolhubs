@@ -18,14 +18,20 @@
     />
 
     <!-- ========================================
-        GLOBAL CSS (Naik dua tingkat ke root, lalu ke assets)
+        GLOBAL CSS
     ========================================= -->
     <link rel="stylesheet" href="../../assets/css/style.css" />
 
     <!-- ========================================
-        TOOL CSS (Sesuai struktur folder lokal kamu)
+        TOOL CSS
     ========================================= -->
     <link rel="stylesheet" href="assets/css/margepdf.css" />
+
+    <!-- ========================================
+        PDF LIBRARIES (pdf-lib & PDF.js)
+    ========================================= -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   </head>
 
   <body>
@@ -34,7 +40,7 @@
     ========================================= -->
     <header class="navbar">
       <div class="container nav-container">
-        <!-- LOGO (Kembali ke index.html utama di root) -->
+        <!-- LOGO -->
         <a href="../index.html#home" class="logo">
           Image<span>Tools</span>Hub
         </a>
@@ -149,14 +155,19 @@
                   <h3>File Terpilih</h3>
                   <span id="file-count">0 file</span>
                 </div>
+                <label
+                  for="pdf-file-input"
+                  class="btn btn-secondary"
+                  id="addMoreButton"
+                >
+                  <i class="bx bx-plus"></i>
+                  Tambah File
+                </label>
               </div>
 
               <!-- DAFTAR LIST FILE -->
-              <div style="padding: 20px">
-                <ul
-                  id="selected-files"
-                  style="list-style: none; padding: 0; margin: 0"
-                ></ul>
+              <div>
+                <ul id="selected-files"></ul>
               </div>
 
               <!-- TOOL ACTIONS -->
@@ -216,7 +227,7 @@
     <script src="../../assets/js/script.js"></script>
 
     <!-- ========================================
-        TOOL JAVASCRIPT (Sesuaikan jika file JS sudah dibuat di dalam folder js)
+        TOOL JAVASCRIPT
     ========================================= -->
     <script src="assets/js/margepdf.js"></script>
   </body>
