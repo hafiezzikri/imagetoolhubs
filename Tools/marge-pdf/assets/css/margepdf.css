@@ -167,6 +167,7 @@
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
   cursor: grab;
+  user-select: none;
 }
 
 .pdf-file-item:hover {
@@ -304,8 +305,25 @@
 }
 
 /* ========================================
-   SEMBUNYIKAN ICON DI LOGO FOOTER
+   LOGO NAVBAR & FOOTER
 ======================================== */
+.navbar .logo,
+.footer-brand .logo {
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  text-decoration: none;
+}
+
+.footer-brand .logo {
+  color: var(--text-color, #f8fafc);
+}
+
+.navbar .logo span,
+.footer-brand .logo span {
+  color: var(--primary-color, #7c5dfa);
+  font-weight: 800;
+}
+
 .footer-brand .logo i,
 .footer-brand .logo svg {
   display: none;
