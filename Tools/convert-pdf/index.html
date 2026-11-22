@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Convert images to PDF or PDF pages to images online for free with ImageToolsHub."
+    />
+    <title>Konversi PDF - ImageToolsHub</title>
+
+    <!-- ========================================
+        BOXICONS
+    ========================================= -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- ========================================
+        GLOBAL CSS
+    ========================================= -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <!-- ========================================
+        TOOL CSS
+    ========================================= -->
+    <link rel="stylesheet" href="assets/css/convertpdf.css" />
+
+    <!-- ========================================
+        PDF LIBRARIES (pdf-lib & PDF.js)
+    ========================================= -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  </head>
+
+  <body>
+    <!-- ========================================
+        HEADER
+    ========================================= -->
+    <header class="navbar">
+      <div class="container nav-container">
+        <!-- LOGO -->
+        <a href="../../index.html#home" class="logo">
+          Image<span>Tools</span>Hub
+        </a>
+
+        <!-- NAVIGATION -->
+        <nav class="nav-menu" id="navMenu">
+          <a href="../../index.html#home" class="nav-link"> Home </a>
+          <a href="../../index.html#tools" class="nav-link active"> Tools </a>
+          <a href="../../index.html#about" class="nav-link"> About </a>
+        </nav>
+
+        <!-- NAV ACTIONS -->
+        <div class="nav-actions">
+          <!-- THEME BUTTON -->
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+          >
+            <i class="bx bx-moon"></i>
+          </button>
+
+          <!-- MOBILE MENU -->
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation menu"
+          >
+            <i class="bx bx-menu"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========================================
+        TOOL HERO
+    ========================================= -->
+    <section class="tool-hero">
+      <div class="container">
+        <!-- BREADCRUMB -->
+        <div class="breadcrumb">
+          <a href="../../index.html"> Home </a>
+          <i class="bx bx-chevron-right"></i>
+          <span>Konversi PDF</span>
+        </div>
+
+        <!-- TOOL HEADER -->
+        <div class="tool-header">
+          <div class="tool-page-icon">
+            <i class="bx bx-transfer"></i>
+          </div>
+
+          <h1>Konversi PDF Online</h1>
+
+          <p>
+            Ubah gambar ke file PDF atau konversi halaman PDF menjadi gambar
+            secara instan dan aman langsung di browser.
+          </p>
+
+          <!-- 2 TAB MINIMALIS -->
+          <div class="convert-tabs" role="tablist">
+            <button
+              type="button"
+              class="convert-tab active"
+              data-tab="img-to-pdf"
+              role="tab"
+              aria-selected="true"
+            >
+              <i class="bx bx-image-add"></i>
+              Gambar ke PDF
+            </button>
+
+            <button
+              type="button"
+              class="convert-tab"
+              data-tab="pdf-to-img"
+              role="tab"
+              aria-selected="false"
+            >
+              <i class="bx bx-file-find"></i>
+              PDF ke Gambar
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+        PANEL 1: GAMBAR KE PDF
+    ========================================= -->
+    <section class="rotator-section" id="panel-img-to-pdf">
+      <div class="container">
+        <div class="rotator-wrapper">
+          <div class="upload-area" id="imgUploadArea">
+            <div class="upload-icon">
+              <i class="bx bx-cloud-upload"></i>
+            </div>
+
+            <h2>Pilih File Gambar</h2>
+
+            <p>
+              Seret dan letakkan gambar (JPG, PNG, WebP) di sini atau pilih dari
+              perangkat Anda.
+            </p>
+
+            <input
+              type="file"
+              id="img-file-input"
+              accept="image/jpeg,image/png,image/webp"
+              multiple
+              hidden
+            />
+
+            <label for="img-file-input" class="upload-button">
+              <i class="bx bx-upload"></i>
+              Pilih Gambar
+            </label>
+
+            <span class="upload-info">
+              JPG, PNG, WebP • Bisa pilih banyak gambar sekaligus
+            </span>
+          </div>
+
+          <div
+            class="rotator-editor"
+            id="img-editor-container"
+            style="display: none"
+          >
+            <div class="rotator-card">
+              <div class="rotator-card-header">
+                <div>
+                  <h3>Daftar Gambar</h3>
+                  <span id="img-count-text">0 gambar</span>
+                </div>
+                <label for="img-file-input" class="btn btn-secondary">
+                  <i class="bx bx-plus"></i>
+                  Tambah Gambar
+                </label>
+              </div>
+
+              <div>
+                <ul id="selected-images"></ul>
+              </div>
+
+              <div class="tool-actions">
+                <div class="convert-option-box">
+                  <label for="pageOrientationSelect" class="convert-label">
+                    Orientasi Halaman PDF
+                  </label>
+                  <select id="pageOrientationSelect" class="convert-select">
+                    <option value="auto" selected>
+                      Otomatis (Ikuti Gambar)
+                    </option>
+                    <option value="portrait">Portrait (Tegak)</option>
+                    <option value="landscape">Landscape (Mendatar)</option>
+                  </select>
+                </div>
+
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  id="clearImagesBtn"
+                >
+                  <i class="bx bx-reset"></i>
+                  Reset
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  id="convertImgToPdfBtn"
+                >
+                  <i class="bx bx-file-blank"></i>
+                  Buat PDF Sekarang
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+        PANEL 2: PDF KE GAMBAR
+    ========================================= -->
+    <section
+      class="rotator-section"
+      id="panel-pdf-to-img"
+      style="display: none"
+    >
+      <div class="container">
+        <div class="rotator-wrapper">
+          <div class="upload-area" id="pdfConvertUploadArea">
+            <div class="upload-icon">
+              <i class="bx bx-cloud-upload"></i>
+            </div>
+
+            <h2>Pilih File PDF</h2>
+
+            <p>
+              Seret dan letakkan satu file PDF di sini untuk diubah menjadi
+              gambar per halaman.
+            </p>
+
+            <input
+              type="file"
+              id="pdf-convert-input"
+              accept="application/pdf"
+              hidden
+            />
+
+            <label for="pdf-convert-input" class="upload-button">
+              <i class="bx bx-upload"></i>
+              Pilih PDF
+            </label>
+
+            <span class="upload-info">
+              Format PDF • Pratinjau & unduh tiap halaman
+            </span>
+          </div>
+
+          <div
+            class="rotator-editor"
+            id="pdf-to-img-editor"
+            style="display: none"
+          >
+            <div class="rotator-card">
+              <div class="rotator-card-header">
+                <div>
+                  <h3 id="pdfConvertFileName">dokumen.pdf</h3>
+                  <span id="pdfConvertPageCount">0 halaman</span>
+                </div>
+                <label for="pdf-convert-input" class="btn btn-secondary">
+                  <i class="bx bx-refresh"></i>
+                  Ganti File
+                </label>
+              </div>
+
+              <div>
+                <ul id="pdf-rendered-pages"></ul>
+              </div>
+
+              <div class="tool-actions">
+                <div class="convert-option-box">
+                  <label for="imageFormatSelect" class="convert-label">
+                    Format Gambar Hasil
+                  </label>
+                  <select id="imageFormatSelect" class="convert-select">
+                    <option value="image/jpeg" selected>JPG (.jpg)</option>
+                    <option value="image/png">PNG (.png)</option>
+                  </select>
+                </div>
+
+                <div class="convert-option-box">
+                  <label for="imageScaleSelect" class="convert-label">
+                    Kualitas / Resolusi
+                  </label>
+                  <select id="imageScaleSelect" class="convert-select">
+                    <option value="1.3">Standar (Cepat)</option>
+                    <option value="2.0" selected>Tinggi (Tajam)</option>
+                  </select>
+                </div>
+
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  id="resetPdfToImgBtn"
+                >
+                  <i class="bx bx-reset"></i>
+                  Reset
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  id="downloadAllImagesBtn"
+                >
+                  <i class="bx bx-download"></i>
+                  Unduh Semua Gambar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+        FOOTER
+    ========================================= -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-brand">
+          <a href="../../index.html#home" class="logo">
+            <i class="bx bx-image"></i>
+            Image<span>Tools</span>Hub
+          </a>
+          <p>Simple image tools for everyone.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="../../index.html#home"> Home </a>
+          <a href="../../index.html#tools"> Tools </a>
+          <a href="../../index.html#about"> About </a>
+          <a href="../../Tools/Privacy-Policy/index.html#Privacy-Policy">
+            Privacy Policy
+          </a>
+          <a href="#"> Terms </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container">
+          <p>© 2026 ImageToolsHub. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ========================================
+        GLOBAL JAVASCRIPT
+    ========================================= -->
+    <script src="../../assets/js/script.js"></script>
+
+    <!-- ========================================
+        TOOL JAVASCRIPT
+    ========================================= -->
+    <script src="assets/js/convertpdf.js"></script>
+  </body>
+</html>
